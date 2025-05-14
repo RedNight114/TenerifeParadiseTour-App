@@ -1,0 +1,456 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme with high contrast */
+    --background: 0 0% 100%; /* White */
+    --foreground: 215 25% 27%; /* Dark gray for text #1F2937 */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+    --primary: 201 96% 32%; /* Darker blue #0369A1 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 31 84% 38%; /* Darker amber #B45309 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 31 84% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 201 96% 32%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 25% 27%; /* Dark gray #1F2937 */
+    --foreground: 0 0% 100%;
+    --card: 215 25% 27%;
+    --card-foreground: 0 0% 100%;
+    --popover: 215 25% 27%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 201 96% 32%; /* Darker blue #0369A1 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 31 84% 38%; /* Darker amber #B45309 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 25% 17%;
+    --muted-foreground: 210 40% 96.1%;
+    --accent: 31 84% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 25% 37%;
+    --input: 215 25% 37%;
+    --ring: 201 96% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Accessibility utility classes */
+  .focus-visible-outline {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .high-contrast-text {
+    @apply text-foreground font-medium;
+  }
+
+  .high-contrast-text-on-dark {
+    @apply text-white font-medium;
+  }
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: 80px;
+}
+
+/* Apply smooth scroll only when clicking internal links */
+@media (prefers-reduced-motion: no-preference) {
+  :target {
+    scroll-margin-top: 80px;
+  }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Active navigation styles with high contrast */
+.nav-link-active {
+  @apply bg-primary text-white shadow-md;
+}
+
+/* Custom button styles with high contrast */
+.btn-primary {
+  @apply bg-primary hover:bg-primary/90 text-white font-medium;
+}
+
+.btn-secondary {
+  @apply bg-secondary hover:bg-secondary/90 text-white font-medium;
+}
+
+/* Excursion card styles */
+.excursion-card {
+  @apply border border-border rounded-lg overflow-hidden transition-all duration-300;
+}
+
+.excursion-card:hover {
+  @apply shadow-lg border-secondary;
+}
+
+/* Hero overlay styles */
+.hero-overlay {
+  @apply bg-gradient-to-r from-negro/80 to-negro/60;
+}
+
+/* Footer styles */
+.footer-bg {
+  @apply bg-negro text-white;
+}
+
+.footer-link {
+  @apply text-gray-200 hover:text-secondary transition-colors duration-200;
+}
+
+/* Featured badge styles */
+.destacado-badge {
+  @apply bg-secondary text-white text-xs font-bold px-2 py-1 rounded;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Mobile sidebar animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Overlay animation */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeInOverlay {
+  animation: fadeInOverlay 0.2s ease-out;
+}
+
+/* Mobile sidebar styles with high contrast */
+.mobile-sidebar {
+  @apply fixed inset-y-0 right-0;
+  @apply w-[280px];
+  @apply bg-white;
+  @apply border-l border-gray-200;
+  @apply shadow-xl z-50;
+  @apply animate-slideInRight;
+}
+
+.mobile-sidebar-overlay {
+  @apply fixed inset-0 bg-negro/70 z-40 animate-fadeInOverlay;
+}
+
+.mobile-sidebar-link {
+  @apply flex items-center gap-2 px-4 py-3 text-foreground hover:bg-muted hover:text-primary transition-colors;
+}
+
+.mobile-sidebar-link-active {
+  @apply bg-muted text-primary;
+}
+
+/* Enhanced submenu animations */
+.submenu-container {
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.submenu-container.closed {
+  height: 0;
+  opacity: 0;
+}
+
+.submenu-container.open {
+  height: auto;
+  opacity: 1;
+}
+
+.submenu-content {
+  @apply pl-8 py-1 bg-muted/50 border-l-2 border-primary/30 ml-4 space-y-1;
+  transform-origin: top;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.submenu-content.closed {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.submenu-content.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.submenu-icon {
+  transition: transform 0.3s ease;
+}
+
+.submenu-icon.open {
+  transform: rotate(90deg);
+}
+
+.mobile-sidebar-submenu-link {
+  @apply block py-2 text-sm text-foreground hover:text-primary transition-colors;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submenu-content.open .mobile-sidebar-submenu-link {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.1s;
+}
+
+.submenu-content.open .mobile-sidebar-submenu-link:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.submenu-content.open .mobile-sidebar-submenu-link:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.submenu-content.open .mobile-sidebar-submenu-link:nth-child(4) {
+  transition-delay: 0.25s;
+}
+
+/* Desktop navbar animations with high contrast */
+.desktop-nav-link {
+  @apply text-foreground relative;
+  transition: color 0.3s ease;
+}
+
+.desktop-nav-link::after {
+  content: "";
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary;
+  transition: width 0.3s ease;
+}
+
+.desktop-nav-link:hover::after,
+.desktop-nav-link.active::after {
+  @apply w-full;
+}
+
+.desktop-nav-link:hover,
+.desktop-nav-link.active {
+  @apply text-primary;
+}
+
+/* Desktop dropdown animations */
+.desktop-dropdown {
+  @apply absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200;
+  transform-origin: top;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.desktop-dropdown-item {
+  @apply block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary font-medium;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-item:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-item:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.desktop-dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.desktop-dropdown-container:hover .desktop-dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Navbar scroll animation */
+.navbar {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.navbar-scrolled {
+  @apply shadow-md;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Language dropdown styles with high contrast */
+.language-dropdown {
+  @apply absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200;
+  transform-origin: top;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.language-dropdown-container:hover .language-dropdown {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.language-dropdown-item {
+  @apply flex items-center px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary font-medium;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.language-dropdown-container:hover .language-dropdown-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.language-dropdown-container:hover .language-dropdown-item:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.language-dropdown-container:hover .language-dropdown-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.language-dropdown-container:hover .language-dropdown-item:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.language-flag {
+  @apply w-5 h-5 mr-2 rounded-full object-cover border border-gray-300;
+}
+
+.language-active {
+  @apply text-primary font-bold;
+}
+
+.language-dropdown-container .desktop-nav-link {
+  @apply flex items-center;
+}
+
+/* Focus accessibility improvements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+/* Interactive element contrast improvements */
+.interactive-element {
+  @apply transition-all duration-200;
+}
+
+.interactive-element:hover {
+  @apply brightness-110;
+}
+
+.interactive-element:active {
+  @apply brightness-90;
+}
+
+/* Text contrast improvements */
+.text-on-dark {
+  @apply text-white font-medium;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.text-on-light {
+  @apply text-foreground font-medium;
+}
+
+/* Action button with high contrast */
+.action-button {
+  @apply bg-primary text-white font-bold py-3 px-6 rounded-md shadow-md hover:shadow-lg hover:bg-primary/90 transition-all duration-200 focus-visible-outline;
+}

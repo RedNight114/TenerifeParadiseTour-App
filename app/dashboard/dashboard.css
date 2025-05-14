@@ -1,0 +1,38 @@
+/* Estilos para el panel de administración */
+.dashboard-table td,
+.dashboard-table th {
+  padding: calc(0.5rem * var(--data-density, 1));
+  transition: padding var(--transition-speed, 0.2s) ease-in-out;
+}
+
+body.compact-mode .card {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+body.compact-mode .dashboard-table td,
+body.compact-mode .dashboard-table th {
+  padding: 0.25rem 0.5rem;
+}
+
+body.animations-enabled * {
+  transition: all var(--transition-speed, 0.2s) ease-in-out;
+}
+
+body.animations-enabled .hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Tamaños de fuente */
+body {
+  font-size: calc(1rem * var(--font-size-multiplier, 1));
+}
+
+/* Densidad de datos */
+.data-density-compact .card-content {
+  padding: 0.75rem;
+}
+
+.data-density-comfortable .card-content {
+  padding: 1.5rem;
+}
